@@ -52,34 +52,12 @@ resource "aws_codedeploy_deployment_group" "dg" {
     aws_autoscaling_group.asg.name
   ]
 
-  deployment_style {
-    deployment_option = "WITH_TRAFFIC_CONTROL"
-    deployment_type   = "BLUE_GREEN"
-  }
+ deployment_style {
+  deployment_option = "WITHOUT_TRAFFIC_CONTROL"
+  deployment_type   = "IN_PLACE"
+}
 
-  blue_green_deployment_config {
-
-    deployment_ready_option {
-      action_on_timeout = "CONTINUE_DEPLOYMENT"
-    }
-
-    terminate_blue_instances_on_deployment_success {
-      action                           = "TERMINATE"
-      termination_wait_time_in_minutes = 5
-    }
-  }
-
-  load_balancer_info {
-
-    target_group_info {
-      name = aws_lb_target_group.blue.name
-    }
-
-    target_group_info {
-      name = aws_lb_target_group.green.name
-    }
-  }
-
+   
   auto_rollback_configuration {
 
     enabled = true
