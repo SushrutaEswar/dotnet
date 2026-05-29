@@ -52,6 +52,27 @@ resource "aws_iam_role" "codebuild_role" {
   })
 }
 
+resource "aws_iam_role_policy_attachment" "codebuild_logs" {
+
+  role       = aws_iam_role.codebuild_role.name
+
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
+}
+
+resource "aws_iam_role_policy_attachment" "codebuild_s3" {
+
+  role       = aws_iam_role.codebuild_role.name
+
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
+
+resource "aws_iam_role_policy_attachment" "codebuild_codepipeline" {
+
+  role       = aws_iam_role.codebuild_role.name
+
+  policy_arn = "arn:aws:iam::aws:policy/AWSCodeBuildDeveloperAccess"
+}
+
 resource "aws_iam_role" "pipeline_role" {
   name = "dotnet-pipeline-role"
 
