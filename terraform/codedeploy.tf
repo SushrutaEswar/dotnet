@@ -27,8 +27,7 @@ resource "aws_codedeploy_deployment_group" "dg" {
 
   app_name              = aws_codedeploy_app.app.name
   deployment_group_name = "dotnet-dg"
-
-  service_role_arn = aws_iam_role.codedeploy_role.arn
+  service_role_arn      = aws_iam_role.codedeploy_role.arn
 
   deployment_config_name = "CodeDeployDefault.AllAtOnce"
 
@@ -43,14 +42,6 @@ resource "aws_codedeploy_deployment_group" "dg" {
 
   auto_rollback_configuration {
     enabled = true
-
-    events = [
-      "DEPLOYMENT_FAILURE"
-    ]
-  }
-}
-    events = [
-      "DEPLOYMENT_FAILURE"
-    ]
+    events  = ["DEPLOYMENT_FAILURE"]
   }
 }
