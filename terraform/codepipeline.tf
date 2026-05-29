@@ -19,9 +19,9 @@ resource "aws_codepipeline" "pipeline" {
       output_artifacts = ["source_output"]
 
       configuration = {
-        ConnectionArn    = arn:aws:codeconnections:ap-south-1:693024458454:connection/37a452d4-c725-4fed-b468-f020808d9ec0
-        FullRepositoryId = SushrutaEswar/dotnet
-        BranchName       = main
+        ConnectionArn    = "arn:aws:codeconnections:ap-south-1:693024458454:connection/37a452d4-c725-4fed-b468-f020808d9ec0"
+        FullRepositoryId = "SushrutaEswar/dotnet"
+        BranchName       = "main"
       }
     }
   }
